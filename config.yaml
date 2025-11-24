@@ -1,16 +1,88 @@
-# DLPatch/config.yaml
-# Main configuration for patch-based vessel segmentation
+image_dir: "images"
+output_dir: "output"
+resize_shape: [256, 256]
 
-device: "cuda"
-model_load_path: "DLPatch/SavedModels/model_final.pth"
-patch_indices_file: "patch_indices_labels.npy"
-resize_shape: [512, 512]
-image_dir: "images/"
-n: 27
-total_patches: 100000
-seed: 42
-class_weights: [1.0, 1.0]
-batch_size: 256
-num_epochs: 25
-early_stopping_patience: 5
-train_val_test_split: [0.8, 0.1, 0.1]
+DLUnet:
+  patch_size: [128, 128]
+  stride: [64, 64]
+  resize_shape: [1024, 1024]
+  batch_size: 16
+  val_split: 0.2
+  test_split: 0.15
+  random_seed: 42
+  n_channels: 1
+  n_classes: 1
+  base_c: 64
+  learning_rate: 0.0001
+  epochs: 50
+  num_workers: 4
+  device: "cuda"
+  checkpoint_dir: "checkpoints/unet"
+
+  use_augmentation: true
+  use_focal_loss: true
+  gradient_clipping: 1.0
+  early_stopping_patience: 10
+
+  dropout_rate: 0.2
+  label_smoothing: 0.1
+
+  scheduler_patience: 5
+  scheduler_factor: 0.5
+  min_lr: 0.000001
+
+DLRandomForest:
+  resize_shape: [512, 512]
+  patch_size: 9
+  patches_per_class: 10000 #75000
+  all_patches: false
+  augment: true
+  balance_train: true
+  stride: 1
+  inference_stride: 1
+  batch_size: 50000
+  test_size: 0.15
+  validation_size: 0.2
+  random_state: 42
+
+  cache_dir: "cache/random_forest"
+  n_workers: 8
+
+  n_estimators: 500
+  max_depth: 25
+  min_samples_split: 3
+  min_samples_leaf: 3
+  max_features: 0.5
+  bootstrap: true
+  class_weight: "balanced_subsample"
+  criterion: "entropy"
+  max_leaf_nodes: 1000
+  min_impurity_decrease: 9.77856384621048e-05
+  n_jobs: -1
+  oob_score: true
+
+  checkpoint_dir: "checkpoints/random_forest"
+  model_name: "rf_model.pkl"
+  save_feature_importance: true
+  verbose: 1
+
+DLPatch:
+  patch_size: [27, 27]
+  stride: [9, 9]
+  resize_shape: [1024, 1024]
+  batch_size: 256
+  val_split: 0.2
+  test_split: 0.15
+  random_seed: 42
+  n_channels: 3
+  n_classes: 2
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 50
+  num_workers: 4
+  device: "cuda"
+  checkpoint_dir: "checkpoints/patch"
+
+  hidden_dims: [64, 128, 256, 128, 64]
+  dropout: 0.2
+  use_batch_norm: true
