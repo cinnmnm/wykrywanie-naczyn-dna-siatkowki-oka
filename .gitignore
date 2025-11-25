@@ -41,8 +41,6 @@ checkpoints/
 
 # Generated outputs, reports and large images
 output/
-report_images/
-images/
 test_images/
 
 # Logs and run/state files
