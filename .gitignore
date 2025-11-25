@@ -1,9 +1,53 @@
-TODO
-Liskowski,\ Krawiec\ -\ 2016\ -\ Segmenting\ Retinal\ Blood\ Vessels\ with\ Deep\ Neural\ Networks.pdf
-raw_patches_0.csv
-.venv
-__pycache__
-patch_indices_labels.npy
-patch_indices_labels_0.npy
-images2
-.vscode
+# --- Python artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Packaging / build
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+venv.bak/
+env.bak/
+
+# --- IDE / editor ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Training checkpoints and model artifacts
+checkpoints/
+*.pt
+*.pth
+*.h5
+*.ckpt
+*.tflite
+
+# Generated outputs, reports and large images
+output/
+test_images/
+
+# Logs and run/state files
+logs/
+training_results*.json
+*.log
+*.pkl
+
+# egg-info produced for this project
+iwm2_projekt.egg-info/

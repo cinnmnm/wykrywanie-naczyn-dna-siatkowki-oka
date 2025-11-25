@@ -1,4 +1,8 @@
-torch
+# It's not possible to auto-detect and select the correct CUDA version in requirements.txt.
+# You must specify a CPU-only version (torch) or a specific CUDA version (e.g., torch==2.0.1+cu118).
+# Users should manually install the correct torch version for their CUDA.
+torch  # Default (CPU-only). For CUDA, install manually: https://pytorch.org/get-started/locally/
+torchmetrics
 numpy
 ipywidgets
 opencv-python
@@ -8,3 +12,10 @@ ipykernel
 scikit-image
 pandas
 pyyaml
+seaborn
+joblib
+scikit-optimize 
+tqdm
+python-json-logger
+scikit-learn>=1.2,<1.8
+-e .
