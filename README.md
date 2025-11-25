@@ -14,15 +14,10 @@ python -m models.dlunet.Core.train --config config.yaml
 
 3. Train Random Forest model
 ```powershell
-python scripts/train_rf.py --config config.yaml --log-dir logs
+python models.random_forest.Core.train --config config.yaml --log-dir logs
 ```
 
-4. Run inference for DL Unet
-```powershell
-python scripts/inference.py --config config.yaml --model checkpoints/unet/unet_best.pt --model-type dlunet --output output
-```
-
-5. Launch interactive app notebook
+4. Launch interactive app notebook
 ```powershell
 jupyter notebook app.ipynb
 ```
