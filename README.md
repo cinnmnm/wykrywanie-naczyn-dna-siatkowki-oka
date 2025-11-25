@@ -14,7 +14,7 @@ python -m models.dlunet.Core.train --config config.yaml
 
 3. Train Random Forest model
 ```powershell
-python models.random_forest.Core.train --config config.yaml --log-dir logs
+python -m models.random_forest.Core.train --config config.yaml --log-dir logs
 ```
 
 4. Launch interactive app notebook
